@@ -93,8 +93,17 @@ public class RecursiveMethods {
 	 */
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
-		
-		// FIXME
+			double bound = 5.0;
+			StdDraw.setXscale(-bound, bound);
+			StdDraw.setYscale(-bound, bound);
+			StdDraw.enableDoubleBuffering();
+			if (radius > radiusMinimumDrawingThreshold) {
+				StdDraw.circle(xCenter, yCenter, radius);
+				circlesUponCircles(xCenter + radius, yCenter, radius / 3.0, radiusMinimumDrawingThreshold);
+				circlesUponCircles(xCenter - radius, yCenter, radius / 3.0, radiusMinimumDrawingThreshold);
+				circlesUponCircles(xCenter, yCenter + radius, radius / 3.0, radiusMinimumDrawingThreshold);
+				circlesUponCircles(xCenter, yCenter - radius, radius / 3.0, radiusMinimumDrawingThreshold);
+			}
 	}
 
 }
